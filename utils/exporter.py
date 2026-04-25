@@ -1,24 +1,38 @@
-# utils/exporter.py
 from docx import Document
 from io import BytesIO
+from reportlab.pdfgen import canvas
+from reportlab.pdfbase import pdfmetrics
+from reportlab.pdfbase.cidfonts import UnicodeCIDFont
+
+# 内置中文字体，零配置无乱码
+pdfmetrics.registerFont(UnicodeCIDFont('STSong-Light'))
+FONT_NAME = 'STSong-Light'
 
 def export_to_markdown(content):
-    """导出为MD文件"""
     return content.encode('utf-8')
 
 def export_to_docx(content):
-    """导出为DOCX文件（完美兼容Streamlit）"""
     doc = Document()
-    lines = content.split('\n')
-    for line in lines:
+    for line in content.split("\n"):
         doc.add_paragraph(line.strip())
-    
-    byte_io = BytesIO()
-    doc.save(byte_io)
-    byte_io.seek(0)
-    return byte_io
+    buffer = BytesIO()
+    doc.save(buffer)
+    buffer.seek(0)
+    return buffer
 
-# 简化版PDF导出，兼容所有系统+中文，无编码报错
 def export_to_pdf(content):
-    pdf_content = content.encode('utf-8')
-    return pdf_content
+    buffer = BytesIO()
+    c = canvas.Canvas(buffer)
+    c.setFont(FONT_NAME, 12)
+    y = 800
+    line_height = 18
+    for line in content.split("\n"):
+        if y < 40:
+            c.showPage()
+            c.setFont(FONT_NAME, 12)
+            y = 800
+        c.drawString(40, y, line.strip())
+        y -= line_height
+    c.save()
+    buffer.seek(0)
+    return buffer

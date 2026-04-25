@@ -1,7 +1,17 @@
-streamlit==1.32.2
+# 核心 Web 框架（Streamlit 界面）
+streamlit==1.38.0
+
+# 环境变量加载（.env 文件）
 python-dotenv==1.0.1
-pypdf2==3.0.1
+
+# HTTP 请求（调用 DeepSeek LLM API）
+requests==2.32.3
+
+# PDF 简历文本解析
+PyPDF2==3.0.1
+
+# Word 文档（.docx）解析与生成
 python-docx==0.8.11
-markdown==3.5.2
-fpdf2==2.7.1
-requests==2.31.0
+
+# PDF 导出（最终稳定版，中文无乱码）
+reportlab==4.2.5

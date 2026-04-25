@@ -67,30 +67,29 @@ if st.session_state.optimized_resume:
     st.markdown("### ✅ 优化后的简历")
     st.markdown(st.session_state.optimized_resume)
 
+    # 5. 导出模块
     st.divider()
     st.header("5. 导出优化简历")
     col1, col2, col3 = st.columns(3)
 
     with col1:
         st.download_button(
-            label="导出 MD",
+            label="导出 Markdown",
             data=export_to_markdown(st.session_state.optimized_resume),
             file_name="优化简历.md",
             mime="text/markdown"
         )
     with col2:
-        doc_bytes = export_to_docx(st.session_state.optimized_resume)
         st.download_button(
-            label="导出 DOCX",
-            data=doc_bytes,
+            label="导出 Word文档",
+            data=export_to_docx(st.session_state.optimized_resume),
             file_name="优化简历.docx",
             mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document"
         )
     with col3:
-        pdf_bytes = export_to_pdf(st.session_state.optimized_resume)
         st.download_button(
             label="导出 PDF",
-            data=pdf_bytes,
+            data=export_to_pdf(st.session_state.optimized_resume),
             file_name="优化简历.pdf",
             mime="application/pdf"
         )
