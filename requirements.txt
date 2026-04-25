@@ -1,0 +1,7 @@
+streamlit==1.32.2
+python-dotenv==1.0.1
+pypdf2==3.0.1
+python-docx==0.8.11
+markdown==3.5.2
+fpdf2==2.7.1
+requests==2.31.0

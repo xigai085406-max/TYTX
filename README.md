@@ -1,6 +1,16 @@
-# TYTX
-# TYTX
-# TYTX
-# TYTX
-# TYTX
-# TYTX
+# 📄 简历优化 Agent
+基于 DeepSeek LLM 的智能简历优化工具，支持简历上传、JD 匹配分析、简历优化、多格式导出。
+
+## ✨ 核心功能
+1. 支持简历上传（PDF/DOCX/MD/TXT）+ 文本粘贴
+2. 输入目标岗位 JD，自动分析匹配亮点/缺口/优化建议
+3. 一键生成优化简历（严格基于原始事实，不虚构）
+4. 导出优化简历为 MD/DOCX/PDF 格式
+5. Docker 一键部署
+
+## 🚀 快速部署（Docker）
+### 1. 环境配置
+1. 克隆项目
+2. 复制环境变量文件：
+```bash
+cp .env.example .env
